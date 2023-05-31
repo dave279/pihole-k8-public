@@ -1,0 +1,53 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-dns
+  namespace: pihole
+  annotations:
+    metallb.universe.tf/allow-shared-ip: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - port: 53
+    targetPort: 53
+    name: pihole-dns-udp
+    protocol: UDP
+  - port: 53
+    targetPort: 53
+    name: pihole-dns-tcp
+    protocol: TCP
+  - port: 67
+    targetPort: 67
+    name: pihole-67-udp
+    protocol: UDP
+  type: LoadBalancer
+  # You want to assign a fixed ip address
+  # pihole will be used as a DNS server
+  # on your network, and that needs to be a 
+  # well known/unchanging address.
+  loadBalancerIP: xxx.xxx.xxx.xxx 
+  sessionAffinity: ClientIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pihole-web
+  namespace: pihole
+  annotations:
+    metallb.universe.tf/allow-shared-ip: pihole
+spec:
+  selector:
+    app: pihole
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+    protocol: TCP
+  - port: 443
+    targetPort: 443
+    name: https
+  type: LoadBalancer
+  # use the same ip address as used previously
+  loadBalancerIP: xxx.xxx.xxx.xxx
+  sessionAffinity: ClientIP

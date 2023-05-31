@@ -1,0 +1,3 @@
+# format is ip-address fqdn
+# 192.168.100.1 gateway.foo.net
+# 192.168.100.2 dns.foo.net
