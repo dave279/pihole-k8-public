@@ -4,7 +4,6 @@ metadata:
   name: pihole-pvc-dnsmasq
   namespace: pihole
 spec:
-  storageClassName: nfs-csi
   accessModes:
     - ReadWriteMany
   resources:

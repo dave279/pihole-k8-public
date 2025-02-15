@@ -4,7 +4,6 @@ metadata:
   name: pihole-pvc-pihole
   namespace: pihole
 spec:
-  storageClassName: nfs-csi
   accessModes:
     - ReadWriteMany
   resources:

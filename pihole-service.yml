@@ -28,6 +28,7 @@ spec:
   # well known/unchanging address.
   loadBalancerIP: xxx.xxx.xxx.xxx 
   sessionAffinity: ClientIP
+  externalTrafficPolicy: Local
 ---
 kind: Service
 apiVersion: v1
